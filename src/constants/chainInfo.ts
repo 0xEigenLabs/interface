@@ -1,12 +1,13 @@
 import ethereumLogoUrl from 'assets/images/ethereum-logo.png'
 import arbitrumLogoUrl from 'assets/svg/arbitrum_logo.svg'
 import celoLogo from 'assets/svg/celo_logo.svg'
+import eigenLogo from 'assets/svg/eigen_logo.svg'
 import optimismLogoUrl from 'assets/svg/optimistic_ethereum.svg'
 import polygonMaticLogo from 'assets/svg/polygon-matic-logo.svg'
 import ms from 'ms.macro'
 
 import { SupportedChainId, SupportedL1ChainId, SupportedL2ChainId } from './chains'
-import { ARBITRUM_LIST, CELO_LIST, OPTIMISM_LIST } from './lists'
+import { ARBITRUM_LIST, CELO_LIST, EIGEN_LIST, OPTIMISM_LIST } from './lists'
 
 export enum NetworkType {
   L1,
@@ -192,5 +193,17 @@ export const CHAIN_INFO: ChainInfoMap = {
     logoUrl: celoLogo,
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
     defaultListUrl: CELO_LIST,
+  },
+  [SupportedChainId.EIGEN]: {
+    networkType: NetworkType.L2,
+    blockWaitMsBeforeWarning: ms`10m`,
+    bridge: 'https://www.portalbridge.com/#/transfer',
+    docs: 'https://0xeigenlabs.github.io/',
+    explorer: 'http://scan.eigen.market/',
+    infoLink: 'https://info.uniswap.org/#/celo',
+    label: 'Eigen',
+    logoUrl: eigenLogo,
+    nativeCurrency: { name: 'Eigen', symbol: 'EIGEN', decimals: 18 },
+    defaultListUrl: EIGEN_LIST,
   },
 }

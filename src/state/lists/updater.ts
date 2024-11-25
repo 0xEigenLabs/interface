@@ -1,7 +1,7 @@
 import { getVersionUpgrade, minVersionBump, VersionUpgrade } from '@uniswap/token-lists'
 import { useWeb3React } from '@web3-react/core'
 import { SupportedChainId } from 'constants/chains'
-import { ARBITRUM_LIST, CELO_LIST, OPTIMISM_LIST, UNSUPPORTED_LIST_URLS } from 'constants/lists'
+import { ARBITRUM_LIST, CELO_LIST, EIGEN_LIST, OPTIMISM_LIST, UNSUPPORTED_LIST_URLS } from 'constants/lists'
 import useInterval from 'lib/hooks/useInterval'
 import { useCallback, useEffect } from 'react'
 import { useAppDispatch } from 'state/hooks'
@@ -38,6 +38,9 @@ export default function Updater(): null {
     }
     if (chainId && [SupportedChainId.CELO, SupportedChainId.CELO_ALFAJORES].includes(chainId)) {
       dispatch(enableList(CELO_LIST))
+    }
+    if (chainId && [SupportedChainId.EIGEN].includes(chainId)) {
+      dispatch(enableList(EIGEN_LIST))
     }
   }, [chainId, dispatch])
   // fetch all lists every 10 minutes, but only after we initialize provider

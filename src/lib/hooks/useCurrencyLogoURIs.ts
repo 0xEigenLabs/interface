@@ -6,8 +6,9 @@ import { WrappedTokenInfo } from 'state/lists/wrappedTokenInfo'
 
 import EthereumLogo from '../../assets/images/ethereum-logo.png'
 import CeloLogo from '../../assets/svg/celo_logo.svg'
+import EigenLogo from '../../assets/svg/eigen_logo.svg'
 import MaticLogo from '../../assets/svg/matic-token-icon.svg'
-import { isCelo, nativeOnChain } from '../../constants/tokens'
+import { isCelo, isEigen, nativeOnChain } from '../../constants/tokens'
 
 type Network = 'ethereum' | 'arbitrum' | 'optimism'
 
@@ -32,6 +33,8 @@ function getNativeLogoURI(chainId: SupportedChainId = SupportedChainId.MAINNET):
     case SupportedChainId.CELO:
     case SupportedChainId.CELO_ALFAJORES:
       return CeloLogo
+    case SupportedChainId.EIGEN:
+      return EigenLogo
     default:
       return EthereumLogo
   }
@@ -48,6 +51,12 @@ function getTokenLogoURI(address: string, chainId: SupportedChainId = SupportedC
   if (isCelo(chainId)) {
     if (address === nativeOnChain(chainId).wrapped.address) {
       return 'https://raw.githubusercontent.com/ubeswap/default-token-list/master/assets/asset_CELO.png'
+    }
+  }
+
+  if (isEigen(chainId)) {
+    if (address === nativeOnChain(chainId).wrapped.address) {
+      return 'https://raw.githubusercontent.com/BC-A/token-list/main/eigen_logo.png'
     }
   }
 }

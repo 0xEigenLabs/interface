@@ -36,7 +36,7 @@ const DEFAULT_QUERY_PARAMS = {
 export const routingApi = createApi({
   reducerPath: 'routingApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.uniswap.org/v1/',
+    baseUrl: 'http://api.uniswap.org/v1/',
   }),
   endpoints: (build) => ({
     getQuote: build.query<

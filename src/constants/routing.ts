@@ -40,6 +40,8 @@ import {
   WETH_POLYGON,
   WETH_POLYGON_MUMBAI,
   WRAPPED_NATIVE_CURRENCY,
+  TOKENA_EIGEN,
+  TOKENB_EIGEN,
 } from './tokens'
 
 type ChainTokenList = {
@@ -86,6 +88,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     WETH_POLYGON,
   ],
   [SupportedChainId.CELO]: [CUSD_CELO, CEUR_CELO, CMC02_CELO, PORTAL_USDC_CELO, PORTAL_ETH_CELO],
+  [SupportedChainId.EIGEN]: [TOKENA_EIGEN, TOKENB_EIGEN],
 }
 export const ADDITIONAL_BASES: { [chainId: number]: { [tokenAddress: string]: Token[] } } = {
   [SupportedChainId.MAINNET]: {
@@ -184,6 +187,10 @@ export const COMMON_BASES: ChainCurrencyList = {
     nativeOnChain(SupportedChainId.CELO_ALFAJORES),
     CUSD_CELO_ALFAJORES,
     CEUR_CELO_ALFAJORES,
+  ],
+  [SupportedChainId.EIGEN]: [
+    nativeOnChain(SupportedChainId.EIGEN),
+    TOKENB_EIGEN,
   ],
 }
 

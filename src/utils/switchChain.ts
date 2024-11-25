@@ -35,6 +35,8 @@ function getRpcUrls(chainId: SupportedChainId): [string] {
       return ['https://forno.celo.org']
     case SupportedChainId.CELO_ALFAJORES:
       return ['https://alfajores-forno.celo-testnet.org']
+    case SupportedChainId.EIGEN:
+      return ['http://54.169.243.159:8546']
     default:
   }
   // Our API-keyed URLs will fail security checks when used with external wallets.

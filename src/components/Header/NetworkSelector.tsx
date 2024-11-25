@@ -160,6 +160,8 @@ const BridgeLabel = ({ chainId }: { chainId: SupportedChainId }) => {
     case SupportedChainId.CELO:
     case SupportedChainId.CELO_ALFAJORES:
       return <Trans>Portal Bridge</Trans>
+    case SupportedChainId.EIGEN:
+      return <Trans>EIGEN Bridge</Trans>
     default:
       return <Trans>Bridge</Trans>
   }
@@ -177,6 +179,7 @@ const ExplorerLabel = ({ chainId }: { chainId: SupportedChainId }) => {
       return <Trans>Polygonscan</Trans>
     case SupportedChainId.CELO:
     case SupportedChainId.CELO_ALFAJORES:
+    case SupportedChainId.EIGEN:
       return <Trans>Blockscout</Trans>
     default:
       return <Trans>Etherscan</Trans>
@@ -269,6 +272,7 @@ const NETWORK_SELECTOR_CHAINS = [
   SupportedChainId.OPTIMISM,
   SupportedChainId.ARBITRUM_ONE,
   SupportedChainId.CELO,
+  SupportedChainId.EIGEN,
 ]
 
 export default function NetworkSelector() {

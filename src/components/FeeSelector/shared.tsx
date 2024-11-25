@@ -16,6 +16,7 @@ export const FEE_AMOUNT_DETAIL: Record<
       SupportedChainId.POLYGON_MUMBAI,
       SupportedChainId.CELO,
       SupportedChainId.CELO_ALFAJORES,
+      SupportedChainId.EIGEN,
     ],
   },
   [FeeAmount.LOW]: {

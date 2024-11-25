@@ -123,6 +123,22 @@ export const DAI_OPTIMISM = new Token(
   'DAI',
   'Dai stable coin'
 )
+
+export const TOKENA_EIGEN = new Token(
+  SupportedChainId.EIGEN,
+  '0x2b45cD38B213Bbd3A1A848bf2467927c976877Cb',
+  18,
+  'TokenA',
+  'TOKENA'
+)
+export const TOKENB_EIGEN = new Token(
+  SupportedChainId.EIGEN,
+  '0x4Af231e5E624038Cd40FC4fd5b86B39d13E1429e',
+  18,
+  'TokenB',
+  'TOKENB'
+)
+
 export const USDC: { [chainId in SupportedChainId]: Token } = {
   [SupportedChainId.MAINNET]: USDC_MAINNET,
   [SupportedChainId.ARBITRUM_ONE]: USDC_ARBITRUM,
@@ -137,6 +153,7 @@ export const USDC: { [chainId in SupportedChainId]: Token } = {
   [SupportedChainId.RINKEBY]: USDC_RINKEBY,
   [SupportedChainId.KOVAN]: USDC_KOVAN,
   [SupportedChainId.ROPSTEN]: USDC_ROPSTEN,
+  [SupportedChainId.EIGEN]: TOKENA_EIGEN
 }
 export const DAI_POLYGON = new Token(
   SupportedChainId.POLYGON,
@@ -388,10 +405,21 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
     'WMATIC',
     'Wrapped MATIC'
   ),
+  [SupportedChainId.EIGEN]: new Token(
+    SupportedChainId.EIGEN,
+    '0xB965D10739e19a9158e7f713720B0145D996E370',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
 }
 
 export function isCelo(chainId: number): chainId is SupportedChainId.CELO | SupportedChainId.CELO_ALFAJORES {
   return chainId === SupportedChainId.CELO_ALFAJORES || chainId === SupportedChainId.CELO
+}
+
+export function isEigen(chainId: number): chainId is SupportedChainId.EIGEN {
+  return chainId === SupportedChainId.EIGEN
 }
 
 function getCeloNativeCurrency(chainId: number) {
@@ -403,6 +431,10 @@ function getCeloNativeCurrency(chainId: number) {
     default:
       throw new Error('Not celo')
   }
+}
+
+function getEigenNativeCurrency(chainId: number) {
+  return TOKENA_EIGEN
 }
 
 function isMatic(chainId: number): chainId is SupportedChainId.POLYGON | SupportedChainId.POLYGON_MUMBAI {
@@ -449,6 +481,8 @@ export function nativeOnChain(chainId: number): NativeCurrency | Token {
     nativeCurrency = new MaticNativeCurrency(chainId)
   } else if (isCelo(chainId)) {
     nativeCurrency = getCeloNativeCurrency(chainId)
+  } else if (isEigen(chainId)) {
+    nativeCurrency = getEigenNativeCurrency(chainId)
   } else {
     nativeCurrency = ExtendedEther.onChain(chainId)
   }
@@ -470,5 +504,6 @@ export const TOKEN_SHORTHANDS: { [shorthand: string]: { [chainId in SupportedCha
     [SupportedChainId.RINKEBY]: USDC_RINKEBY.address,
     [SupportedChainId.KOVAN]: USDC_KOVAN.address,
     [SupportedChainId.ROPSTEN]: USDC_ROPSTEN.address,
+    [SupportedChainId.EIGEN]: TOKENA_EIGEN.address,
   },
 }

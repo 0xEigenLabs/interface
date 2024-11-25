@@ -17,6 +17,7 @@ const CHAIN_SUBGRAPH_URL: Record<number, string> = {
   [SupportedChainId.POLYGON]: 'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-v3-polygon',
 
   [SupportedChainId.CELO]: 'https://api.thegraph.com/subgraphs/name/jesse-sawa/uniswap-celo',
+  [SupportedChainId.EIGEN]: 'http://localhost:8001/subgraphs/name/BC-A/eigen-uniswap',
 }
 
 export const api = createApi({

@@ -37,7 +37,7 @@ export function useClientSideV3Trade<TTradeType extends TradeType>(
   const { chainId } = useWeb3React()
   // Chains deployed using the deploy-v3 script only deploy QuoterV2.
   const useQuoterV2 = useMemo(
-    () => Boolean(chainId && [SupportedChainId.CELO, SupportedChainId.CELO_ALFAJORES].includes(chainId)),
+    () => Boolean(chainId && [SupportedChainId.CELO, SupportedChainId.CELO_ALFAJORES, SupportedChainId.EIGEN].includes(chainId)),
     [chainId]
   )
   const quoter = useQuoter(useQuoterV2)

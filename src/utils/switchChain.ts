@@ -11,6 +11,11 @@ import { CHAIN_INFO } from 'constants/chainInfo'
 import { ALL_SUPPORTED_CHAIN_IDS, SupportedChainId } from 'constants/chains'
 import { RPC_URLS } from 'constants/networks'
 
+const EIGEN_RPC = process.env.REACT_APP_EIGEN_RPC as string
+if (typeof EIGEN_RPC === 'undefined') {
+  throw new Error(`EIGEN_RPC must be a defined environment variable`)
+}
+
 function getRpcUrls(chainId: SupportedChainId): [string] {
   switch (chainId) {
     case SupportedChainId.MAINNET:
@@ -36,7 +41,7 @@ function getRpcUrls(chainId: SupportedChainId): [string] {
     case SupportedChainId.CELO_ALFAJORES:
       return ['https://alfajores-forno.celo-testnet.org']
     case SupportedChainId.EIGEN:
-      return ['http://54.169.243.159:8546']
+      return [ EIGEN_RPC ]
     default:
   }
   // Our API-keyed URLs will fail security checks when used with external wallets.

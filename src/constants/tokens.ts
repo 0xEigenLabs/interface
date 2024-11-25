@@ -3,6 +3,7 @@ import invariant from 'tiny-invariant'
 
 import { UNI_ADDRESS } from './addresses'
 import { SupportedChainId } from './chains'
+import eigenTokenList from '../token_list.json'
 
 export const USDC_MAINNET = new Token(
   SupportedChainId.MAINNET,
@@ -124,20 +125,37 @@ export const DAI_OPTIMISM = new Token(
   'Dai stable coin'
 )
 
-export const TOKENA_EIGEN = new Token(
+export const USDC_EIGEN = new Token(
   SupportedChainId.EIGEN,
-  '0x2b45cD38B213Bbd3A1A848bf2467927c976877Cb',
+  eigenTokenList.tokens.find(token => token.symbol === 'USDC')?.address || '',
   18,
-  'TokenA',
-  'TOKENA'
-)
-export const TOKENB_EIGEN = new Token(
+  'USDC',
+  'USDC'
+);
+
+export const WETH_EIGEN = new Token(
   SupportedChainId.EIGEN,
-  '0x4Af231e5E624038Cd40FC4fd5b86B39d13E1429e',
+  eigenTokenList.tokens.find(token => token.symbol === 'WETH')?.address || '',
   18,
-  'TokenB',
-  'TOKENB'
-)
+  'WETH',
+  'Wrapped Ether'
+);
+
+export const EGN_EIGEN = new Token(
+  SupportedChainId.EIGEN,
+  eigenTokenList.tokens.find(token => token.symbol === 'EGN')?.address || '',
+  18,
+  'EGN',
+  'Eigen'
+);
+
+export const WADA_EIGEN = new Token(
+  SupportedChainId.EIGEN,
+  eigenTokenList.tokens.find(token => token.symbol === 'WADA')?.address || '',
+  18,
+  'WADA',
+  'Wrapped ADA'
+);
 
 export const USDC: { [chainId in SupportedChainId]: Token } = {
   [SupportedChainId.MAINNET]: USDC_MAINNET,
@@ -153,7 +171,7 @@ export const USDC: { [chainId in SupportedChainId]: Token } = {
   [SupportedChainId.RINKEBY]: USDC_RINKEBY,
   [SupportedChainId.KOVAN]: USDC_KOVAN,
   [SupportedChainId.ROPSTEN]: USDC_ROPSTEN,
-  [SupportedChainId.EIGEN]: TOKENA_EIGEN
+  [SupportedChainId.EIGEN]: USDC_EIGEN,
 }
 export const DAI_POLYGON = new Token(
   SupportedChainId.POLYGON,
@@ -405,13 +423,7 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
     'WMATIC',
     'Wrapped MATIC'
   ),
-  [SupportedChainId.EIGEN]: new Token(
-    SupportedChainId.EIGEN,
-    '0xB965D10739e19a9158e7f713720B0145D996E370',
-    18,
-    'WETH',
-    'Wrapped Ether'
-  ),
+  [SupportedChainId.EIGEN]: WETH_EIGEN,
 }
 
 export function isCelo(chainId: number): chainId is SupportedChainId.CELO | SupportedChainId.CELO_ALFAJORES {
@@ -434,7 +446,12 @@ function getCeloNativeCurrency(chainId: number) {
 }
 
 function getEigenNativeCurrency(chainId: number) {
-  return TOKENA_EIGEN
+  switch (chainId) {
+    case SupportedChainId.EIGEN:
+      return WETH_EIGEN
+    default:
+      throw new Error('Not eigen')
+  }
 }
 
 function isMatic(chainId: number): chainId is SupportedChainId.POLYGON | SupportedChainId.POLYGON_MUMBAI {
@@ -504,6 +521,6 @@ export const TOKEN_SHORTHANDS: { [shorthand: string]: { [chainId in SupportedCha
     [SupportedChainId.RINKEBY]: USDC_RINKEBY.address,
     [SupportedChainId.KOVAN]: USDC_KOVAN.address,
     [SupportedChainId.ROPSTEN]: USDC_ROPSTEN.address,
-    [SupportedChainId.EIGEN]: TOKENA_EIGEN.address,
+    [SupportedChainId.EIGEN]: USDC_EIGEN.address,
   },
 }

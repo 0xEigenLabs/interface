@@ -4,6 +4,8 @@ import { FACTORY_ADDRESS as V3_FACTORY_ADDRESS } from '@uniswap/v3-sdk'
 import { constructSameAddressMap } from '../utils/constructSameAddressMap'
 import { SupportedChainId } from './chains'
 
+import addresses from '../address.json';
+
 type AddressMap = { [chainId: number]: string }
 
 export const UNI_ADDRESS: AddressMap = constructSameAddressMap('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984')
@@ -21,13 +23,13 @@ const CELO_NONFUNGIBLE_POSITION_MANAGER_ADDRESSES = '0x3d79EdAaBC0EaB6F08ED885C0
 const CELO_TICK_LENS_ADDRESSES = '0x5f115D9113F88e0a0Db1b5033D90D4a9690AcD3D'
 
 // eigen v3 addresses
-const EIGEN_V3_CORE_FACTORY_ADDRESSES = '0x2694cfcc47aAbC5C042dea104b6ac37e9924a4B1'
-const EIGEN_V3_ROUTER_ADDRESS = '0x303CB317624c74bB20Acbb9E13c8D745C6379826'
-const EIGEN_V3_MIGRATOR_ADDRESSES = '0x34fa02cf467232c201FB9E90c786A69c7d743D8D'
-const EIGEN_MULTICALL_ADDRESS = '0x85cB33Fc344275709c0c194Bc7D1c5C32736C8B9'
-const EIGEN_QUOTER_ADDRESSES = '0xF01ecC1dF1868C3B15f0edC4768812b9c435BBfb'
-const EIGEN_NONFUNGIBLE_POSITION_MANAGER_ADDRESSES = '0x0EeC8BC5B2A3879A9B8997100486F4e26a4f299f'
-const EIGEN_TICK_LENS_ADDRESSES = '0x3c0e871bB7337D5e6A18FDD73c4D9e7567961Ad3'
+const EIGEN_V3_CORE_FACTORY_ADDRESSES = addresses.v3CoreFactoryAddress;
+const EIGEN_V3_ROUTER_ADDRESS = addresses.swapRouter02;
+const EIGEN_V3_MIGRATOR_ADDRESSES = addresses.v3MigratorAddress;
+const EIGEN_MULTICALL_ADDRESS = addresses.multicall2Address;
+const EIGEN_QUOTER_ADDRESSES = addresses.quoterV2Address;
+const EIGEN_NONFUNGIBLE_POSITION_MANAGER_ADDRESSES = addresses.nonfungibleTokenPositionManagerAddress;
+const EIGEN_TICK_LENS_ADDRESSES = addresses.tickLensAddress;
 
 /* V3 Contract Addresses */
 export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {

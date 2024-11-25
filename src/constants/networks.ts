@@ -7,6 +7,11 @@ if (typeof INFURA_KEY === 'undefined') {
   throw new Error(`REACT_APP_INFURA_KEY must be a defined environment variable`)
 }
 
+const EIGEN_RPC = process.env.REACT_APP_EIGEN_RPC as string
+if (typeof EIGEN_RPC === 'undefined') {
+  throw new Error(`EIGEN_RPC must be a defined environment variable`)
+}
+
 export const MAINNET_PROVIDER = new JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_KEY}`)
 
 /**
@@ -26,5 +31,5 @@ export const RPC_URLS: { [key in SupportedChainId]: string } = {
   [SupportedChainId.POLYGON_MUMBAI]: `https://polygon-mumbai.infura.io/v3/${INFURA_KEY}`,
   [SupportedChainId.CELO]: `https://forno.celo.org`,
   [SupportedChainId.CELO_ALFAJORES]: `https://alfajores-forno.celo-testnet.org`,
-  [SupportedChainId.EIGEN]: `http://54.169.243.159:8546`,
+  [SupportedChainId.EIGEN]: EIGEN_RPC,
 }

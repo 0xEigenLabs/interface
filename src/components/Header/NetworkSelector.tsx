@@ -132,7 +132,7 @@ const SelectorControls = styled.div<{ interactive: boolean }>`
   justify-content: space-between;
   padding: 6px 8px;
 `
-const SelectorLogo = styled(Logo)<{ interactive?: boolean }>`
+const SelectorLogo = styled(Logo) <{ interactive?: boolean }>`
   margin-right: ${({ interactive }) => (interactive ? 8 : 0)}px;
   @media screen and (min-width: ${MEDIA_WIDTHS.upToSmall}px) {
     margin-right: 8px;
@@ -161,7 +161,7 @@ const BridgeLabel = ({ chainId }: { chainId: SupportedChainId }) => {
     case SupportedChainId.CELO_ALFAJORES:
       return <Trans>Portal Bridge</Trans>
     case SupportedChainId.EIGEN:
-      return <Trans>EIGEN Bridge</Trans>
+      return <Trans>Eigen Bridge</Trans>
     default:
       return <Trans>Bridge</Trans>
   }
